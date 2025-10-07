@@ -2,24 +2,24 @@
 
 ## Aplicación
 
-**Lenguaje:** Node.js
-**Framework:** Express
-**Descripción:** API REST para gestión de tareas
+**Lenguaje:** Go
+**Framework:** Chi
+**Descripción:** API REST para gestión de usuarios
 
-**Endpoints:**
+**Endpoints:** GET http://localhost:8089/users
 - GET / - Página de bienvenida
-- GET /api/tasks - Lista de tareas
-- POST /api/tasks - Crear tarea
+- GET /users - Lista de usuarios
+- GET /users/1 - Buscar usuario por id
 
 ## Dockerfile
 
 \`\`\`dockerfile
 # Stage 1: Build
-FROM node:18-alpine AS build
+FROM golang:1.22-alpine AS builder
 ...
 
 # Stage 2: Production
-FROM node:18-alpine
+FROM alpine:3.20
 ...
 \`\`\`
 
@@ -33,35 +33,22 @@ FROM node:18-alpine
 ## Build
 
 \`\`\`bash
-docker build -t tasks-api:1.0 .
+docker build -t go-app:1.0 .
 \`\`\`
 
-**Salida:**
-\`\`\`
-[+] Building 32.5s ...
-Successfully tagged tasks-api:1.0
-\`\`\`
-
-**Tamaño final:** 145MB
 
 ## Testing
 
-![Docker Images](screenshots/docker-images.png)
-![Container Running](screenshots/docker-ps.png)
-![API Response](screenshots/curl-response.png)
+![Docker Images](./screenshots/contenedor_en_ejecucion.png "Contenedor en ejecucion")
+![API Response](screenshots/5.%20Prueba2.png "Prueba")
 
 ## Docker Hub
 
-**URL:** https://hub.docker.com/r/miusuario/tasks-api
+**URL:** https://hub.docker.com/repository/docker/mercierj/go-app/general
 
-![Docker Hub](screenshots/dockerhub.png)
+![Docker Hub](screenshots/dockhub.png "Imagen en docker hub")
 
-## Optimizaciones
-
-- Multi-stage build: redujo de 320MB a 145MB
-- Usuario non-root
-- .dockerignore excluye node_modules
 
 ## Conclusiones
 
-Aprendí a optimizar imágenes...
+Aprendí a construir imagenes multistage.
